@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.andrewproject.flutter_firebase_getx">
+
    <application
+        android:usesCleartextTraffic="true"
         android:label="flutter_firebase_getx"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
