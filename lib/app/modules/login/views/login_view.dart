@@ -41,6 +41,18 @@ class LoginView extends GetView<LoginController> {
                 prefixIcon: Icon(Icons.key),
               ),
             ),
+            SizedBox(height: 10),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {
+                  Get.toNamed(Routes.RESET_PASSWORD);
+                },
+                child: Text(
+                  "Forgot Password ?",
+                ),
+              ),
+            ),
             SizedBox(height: 30),
             ElevatedButton.icon(
               onPressed: () {

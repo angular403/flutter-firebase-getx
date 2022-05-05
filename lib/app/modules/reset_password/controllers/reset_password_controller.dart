@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 
-class LoginController extends GetxController {
-  TextEditingController emailC = TextEditingController();
+class ResetPasswordController extends GetxController {
+   TextEditingController emailC = TextEditingController();
   TextEditingController passC = TextEditingController();
 
   @override
@@ -12,4 +12,6 @@ class LoginController extends GetxController {
     passC.dispose();
     super.onClose();
   }
+
+
 }
