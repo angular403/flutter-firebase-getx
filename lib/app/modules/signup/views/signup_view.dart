@@ -51,6 +51,7 @@ class SignupView extends GetView<SignupController> {
             ),
             SizedBox(height: 10),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("Sudah Punya Akun ?"),
                 TextButton(
