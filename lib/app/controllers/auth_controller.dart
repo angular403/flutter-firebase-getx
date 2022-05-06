@@ -7,6 +7,57 @@ class AuthController extends GetxController {
 
   Stream<User?> get streamAuthStatus => auth.authStateChanges();
 
+  // void login Phone
+  void loginPhone(String phone) async {
+    await auth.verifyPhoneNumber(
+      phoneNumber: phone,
+      verificationCompleted: (PhoneAuthCredential) {
+        print("verificationCompleted".toUpperCase());
+        print("phoneAuthCredential");
+        print(PhoneAuthCredential);
+        print("============================");
+      },
+      verificationFailed: (error) => Get.defaultDialog(
+        title: "Terjadi Kesalahan",
+        middleText: error.message!,
+      ),
+      codeSent: (verificationId, forceResendingToken) {
+        print("CodeSent".toUpperCase());
+        print("verificationId");
+        print(verificationId);
+        print("----------------------------");
+        print("forceResendingToken");
+        print(forceResendingToken);
+
+        print("============================");
+        Get.toNamed(Routes.OTP, arguments: verificationId);
+      },
+      codeAutoRetrievalTimeout: (verificationId) {
+        print("codeAutoRetrievalTimeout".toUpperCase());
+        print("verificationId");
+        print(verificationId);
+        print("----------------------------");
+      },
+    );
+  }
+
+  // Code OTP Verification
+
+  void loginOtp(String otp, String verifId) async {
+    try {
+      PhoneAuthCredential myCredential = await PhoneAuthProvider.credential(
+        verificationId: verifId,
+        smsCode: otp,
+      );
+      await auth.signInWithCredential(myCredential);
+      Get.offAllNamed(Routes.HOME);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  /////////////////////////
+
   // Signup
   void signup(String email, String password) async {
     try {
@@ -111,10 +162,10 @@ class AuthController extends GetxController {
             },
             textConfirm: "Ya, Saya Mengerti.");
       } catch (e) {
-      Get.defaultDialog(
-        title: "Terjadi Kesalahan",
-        middleText: "Tidak dapat mengirimkan reset password.",
-      );
+        Get.defaultDialog(
+          title: "Terjadi Kesalahan",
+          middleText: "Tidak dapat mengirimkan reset password.",
+        );
       }
     } else {
       Get.defaultDialog(

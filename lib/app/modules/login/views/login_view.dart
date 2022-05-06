@@ -19,7 +19,7 @@ class LoginView extends GetView<LoginController> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: Column(
+        child: ListView(
           children: [
             TextField(
               controller: controller.emailC,
@@ -74,6 +74,26 @@ class LoginView extends GetView<LoginController> {
                   child: Text("Daftar Sekarang"),
                 ),
               ],
+            ),
+            Divider(color: Colors.black),
+            SizedBox(height: 20),
+            TextField(
+              controller: controller.phoneC,
+              keyboardType: TextInputType.phone,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(
+                labelText: "Phone Number",
+                prefixIcon: Icon(Icons.phone),
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton.icon(
+              onPressed: () {
+                authC.loginPhone(controller.phoneC.text);
+              },
+              icon: Icon(Icons.login),
+              label: Text("SEND OTP"),
             ),
           ],
         ),
