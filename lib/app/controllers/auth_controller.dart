@@ -1,12 +1,44 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_firebase_getx/app/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
 
 class AuthController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   Stream<User?> get streamAuthStatus => auth.authStateChanges();
 
+  // login with google
+
+  void loginGoogle() async {
+    try {
+      GoogleSignIn _googleSignIn = GoogleSignIn();
+      GoogleSignInAccount? myAccount = await _googleSignIn.signIn();
+      if (myAccount != null) {
+        print(myAccount);
+        // Obtain the auth details from the request
+        final GoogleSignInAuthentication? googleAuth =
+            await myAccount.authentication;
+        // Create a new credential
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken,
+          idToken: googleAuth?.idToken,
+        );
+        // Once signed in, return the UserCredential
+        await FirebaseAuth.instance.signInWithCredential(credential);
+        Get.offAllNamed(Routes.HOME);
+      } else {
+        throw "Belum Memiliki Akun Google";
+      }
+    } catch (error) {
+      print(error);
+      Get.defaultDialog(
+          title: "TERJADI KESALAHAN", middleText: "${error.toString()}");
+    }
+  }
+
+  /////////////////////
   // void login Phone
   void loginPhone(String phone) async {
     await auth.verifyPhoneNumber(

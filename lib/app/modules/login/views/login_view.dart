@@ -49,7 +49,7 @@ class LoginView extends GetView<LoginController> {
                   Get.toNamed(Routes.RESET_PASSWORD);
                 },
                 child: Text(
-                  "Forgot Password ?",
+                  "FORGOT PASSWORD ?",
                 ),
               ),
             ),
@@ -82,7 +82,7 @@ class LoginView extends GetView<LoginController> {
               keyboardType: TextInputType.phone,
               textInputAction: TextInputAction.next,
               decoration: InputDecoration(
-                labelText: "Phone Number",
+                labelText: "PHONE NUMBER",
                 prefixIcon: Icon(Icons.phone),
                 border: OutlineInputBorder(),
               ),
@@ -94,6 +94,18 @@ class LoginView extends GetView<LoginController> {
               },
               icon: Icon(Icons.login),
               label: Text("SEND OTP"),
+            ),
+            SizedBox(height: 10),
+            Divider(color: Colors.black),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                authC.loginGoogle();
+              },
+              child: Text("LOGIN WITH GOOGLE"),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.red[900],
+              ),
             ),
           ],
         ),

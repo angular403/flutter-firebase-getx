@@ -8,7 +8,7 @@ class LoginController extends GetxController {
 
   @override
   void onClose() {
-    // TODO: implement onClose
+
     emailC.dispose();
     passC.dispose();
     phoneC.dispose();

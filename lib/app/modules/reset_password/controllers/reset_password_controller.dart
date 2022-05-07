@@ -7,7 +7,7 @@ class ResetPasswordController extends GetxController {
 
   @override
   void onClose() {
-    // TODO: implement onClose
+
     emailC.dispose();
     passC.dispose();
     super.onClose();
