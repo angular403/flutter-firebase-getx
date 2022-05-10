@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_getx/app/controllers/auth_controller.dart';
+import 'package:flutter_firebase_getx/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
 
@@ -10,7 +12,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('HomeView'), centerTitle: true, actions: [
+      appBar: AppBar(title: Text('HOME'), centerTitle: true, actions: [
         IconButton(
           onPressed: () {
             authC.logout();
@@ -18,11 +20,40 @@ class HomeView extends GetView<HomeController> {
           icon: Icon(Icons.logout),
         ),
       ]),
-      body: Center(
-        child: Text(
-          'HomeView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: StreamBuilder<QuerySnapshot<Object?>>(
+          stream: controller.streamData(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.active) {
+              var listAllDocs = snapshot.data!.docs;
+              return ListView.builder(
+                itemCount: listAllDocs.length,
+                itemBuilder: (context, index) => ListTile(
+                  onTap: () {
+                    Get.toNamed(Routes.EDIT_PRODUCT,
+                        arguments: listAllDocs[index].id);
+                  },
+                  title: Text(
+                      "${(listAllDocs[index].data() as Map<String, dynamic>)["name"]}"),
+                  subtitle: Text(
+                      "${(listAllDocs[index].data() as Map<String, dynamic>)["price"]} "),
+                  trailing: IconButton(
+                    onPressed: () {
+                      controller.deleteProduct(listAllDocs[index].id);
+                    },
+                    icon: Icon(Icons.delete),
+                  ),
+                ),
+              );
+            }
+            return Center(
+              child: CircularProgressIndicator(color: Colors.green),
+            );
+          }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.toNamed(Routes.ADD_PRODUCT);
+        },
+        child: Icon(Icons.add),
       ),
     );
   }

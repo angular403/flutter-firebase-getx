@@ -1,5 +1,9 @@
 import 'package:get/get.dart';
 
+import 'package:flutter_firebase_getx/app/modules/add_product/bindings/add_product_binding.dart';
+import 'package:flutter_firebase_getx/app/modules/add_product/views/add_product_view.dart';
+import 'package:flutter_firebase_getx/app/modules/edit_product/bindings/edit_product_binding.dart';
+import 'package:flutter_firebase_getx/app/modules/edit_product/views/edit_product_view.dart';
 import 'package:flutter_firebase_getx/app/modules/home/bindings/home_binding.dart';
 import 'package:flutter_firebase_getx/app/modules/home/views/home_view.dart';
 import 'package:flutter_firebase_getx/app/modules/login/bindings/login_binding.dart';
@@ -43,6 +47,16 @@ class AppPages {
       name: _Paths.OTP,
       page: () => OtpView(),
       binding: OtpBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_PRODUCT,
+      page: () => AddProductView(),
+      binding: AddProductBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_PRODUCT,
+      page: () => EditProductView(),
+      binding: EditProductBinding(),
     ),
   ];
 }
