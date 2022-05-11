@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: "Aplication",
-      initialRoute: Routes.QUERY,
+      initialRoute: Routes.MOVIE,
       getPages: AppPages.routes,
     );
     // return StreamBuilder<User?>(

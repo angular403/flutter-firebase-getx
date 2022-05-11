@@ -1,13 +1,19 @@
 import 'package:get/get.dart';
 
+import 'package:flutter_firebase_getx/app/modules/add_movie/bindings/add_movie_binding.dart';
+import 'package:flutter_firebase_getx/app/modules/add_movie/views/add_movie_view.dart';
 import 'package:flutter_firebase_getx/app/modules/add_product/bindings/add_product_binding.dart';
 import 'package:flutter_firebase_getx/app/modules/add_product/views/add_product_view.dart';
+import 'package:flutter_firebase_getx/app/modules/edit_movie/bindings/edit_movie_binding.dart';
+import 'package:flutter_firebase_getx/app/modules/edit_movie/views/edit_movie_view.dart';
 import 'package:flutter_firebase_getx/app/modules/edit_product/bindings/edit_product_binding.dart';
 import 'package:flutter_firebase_getx/app/modules/edit_product/views/edit_product_view.dart';
 import 'package:flutter_firebase_getx/app/modules/home/bindings/home_binding.dart';
 import 'package:flutter_firebase_getx/app/modules/home/views/home_view.dart';
 import 'package:flutter_firebase_getx/app/modules/login/bindings/login_binding.dart';
 import 'package:flutter_firebase_getx/app/modules/login/views/login_view.dart';
+import 'package:flutter_firebase_getx/app/modules/movie/bindings/movie_binding.dart';
+import 'package:flutter_firebase_getx/app/modules/movie/views/movie_view.dart';
 import 'package:flutter_firebase_getx/app/modules/otp/bindings/otp_binding.dart';
 import 'package:flutter_firebase_getx/app/modules/otp/views/otp_view.dart';
 import 'package:flutter_firebase_getx/app/modules/query/bindings/query_binding.dart';
@@ -64,6 +70,21 @@ class AppPages {
       name: _Paths.QUERY,
       page: () => QueryView(),
       binding: QueryBinding(),
+    ),
+    GetPage(
+      name: _Paths.MOVIE,
+      page: () => MovieView(),
+      binding: MovieBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_MOVIE,
+      page: () => AddMovieView(),
+      binding: AddMovieBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_MOVIE,
+      page: () => EditMovieView(),
+      binding: EditMovieBinding(),
     ),
   ];
 }

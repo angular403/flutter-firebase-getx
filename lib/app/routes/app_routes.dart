@@ -12,6 +12,9 @@ abstract class Routes {
   static const ADD_PRODUCT = _Paths.ADD_PRODUCT;
   static const EDIT_PRODUCT = _Paths.EDIT_PRODUCT;
   static const QUERY = _Paths.QUERY;
+  static const MOVIE = _Paths.MOVIE;
+  static const ADD_MOVIE = _Paths.ADD_MOVIE;
+  static const EDIT_MOVIE = _Paths.EDIT_MOVIE;
 }
 
 abstract class _Paths {
@@ -23,4 +26,7 @@ abstract class _Paths {
   static const ADD_PRODUCT = '/add-product';
   static const EDIT_PRODUCT = '/edit-product';
   static const QUERY = '/query';
+  static const MOVIE = '/movie';
+  static const ADD_MOVIE = '/add-movie';
+  static const EDIT_MOVIE = '/edit-movie';
 }
