@@ -10,6 +10,8 @@ import 'package:flutter_firebase_getx/app/modules/login/bindings/login_binding.d
 import 'package:flutter_firebase_getx/app/modules/login/views/login_view.dart';
 import 'package:flutter_firebase_getx/app/modules/otp/bindings/otp_binding.dart';
 import 'package:flutter_firebase_getx/app/modules/otp/views/otp_view.dart';
+import 'package:flutter_firebase_getx/app/modules/query/bindings/query_binding.dart';
+import 'package:flutter_firebase_getx/app/modules/query/views/query_view.dart';
 import 'package:flutter_firebase_getx/app/modules/reset_password/bindings/reset_password_binding.dart';
 import 'package:flutter_firebase_getx/app/modules/reset_password/views/reset_password_view.dart';
 import 'package:flutter_firebase_getx/app/modules/signup/bindings/signup_binding.dart';
@@ -57,6 +59,11 @@ class AppPages {
       name: _Paths.EDIT_PRODUCT,
       page: () => EditProductView(),
       binding: EditProductBinding(),
+    ),
+    GetPage(
+      name: _Paths.QUERY,
+      page: () => QueryView(),
+      binding: QueryBinding(),
     ),
   ];
 }

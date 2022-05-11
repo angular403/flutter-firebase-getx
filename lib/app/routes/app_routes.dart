@@ -11,6 +11,7 @@ abstract class Routes {
   static const OTP = _Paths.OTP;
   static const ADD_PRODUCT = _Paths.ADD_PRODUCT;
   static const EDIT_PRODUCT = _Paths.EDIT_PRODUCT;
+  static const QUERY = _Paths.QUERY;
 }
 
 abstract class _Paths {
@@ -21,4 +22,5 @@ abstract class _Paths {
   static const OTP = '/otp';
   static const ADD_PRODUCT = '/add-product';
   static const EDIT_PRODUCT = '/edit-product';
+  static const QUERY = '/query';
 }
