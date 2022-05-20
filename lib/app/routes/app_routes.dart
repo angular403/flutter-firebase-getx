@@ -6,27 +6,19 @@ abstract class Routes {
 
   static const HOME = _Paths.HOME;
   static const LOGIN = _Paths.LOGIN;
-  static const SIGNUP = _Paths.SIGNUP;
-  static const RESET_PASSWORD = _Paths.RESET_PASSWORD;
-  static const OTP = _Paths.OTP;
-  static const ADD_PRODUCT = _Paths.ADD_PRODUCT;
-  static const EDIT_PRODUCT = _Paths.EDIT_PRODUCT;
-  static const QUERY = _Paths.QUERY;
-  static const MOVIE = _Paths.MOVIE;
-  static const ADD_MOVIE = _Paths.ADD_MOVIE;
-  static const EDIT_MOVIE = _Paths.EDIT_MOVIE;
+  static const ADMIN = _Paths.ADMIN;
+  static const PETUGAS = _Paths.PETUGAS;
+  static const PROFILE = _Paths.PROFILE;
+  static const ADD_ADMIN = _Paths.ADD_ADMIN;
+  static const EDIT_ADMIN = _Paths.EDIT_ADMIN;
 }
 
 abstract class _Paths {
   static const HOME = '/home';
   static const LOGIN = '/login';
-  static const SIGNUP = '/signup';
-  static const RESET_PASSWORD = '/reset-password';
-  static const OTP = '/otp';
-  static const ADD_PRODUCT = '/add-product';
-  static const EDIT_PRODUCT = '/edit-product';
-  static const QUERY = '/query';
-  static const MOVIE = '/movie';
-  static const ADD_MOVIE = '/add-movie';
-  static const EDIT_MOVIE = '/edit-movie';
+  static const ADMIN = '/admin';
+  static const PETUGAS = '/petugas';
+  static const PROFILE = '/profile';
+  static const ADD_ADMIN = '/add-admin';
+  static const EDIT_ADMIN = '/edit-admin';
 }

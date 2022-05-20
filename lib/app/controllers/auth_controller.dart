@@ -62,7 +62,7 @@ class AuthController extends GetxController {
         print(forceResendingToken);
 
         print("============================");
-        Get.toNamed(Routes.OTP, arguments: verificationId);
+        // Get.toNamed(Routes.OTP, arguments: verificationId);
       },
       codeAutoRetrievalTimeout: (verificationId) {
         print("codeAutoRetrievalTimeout".toUpperCase());

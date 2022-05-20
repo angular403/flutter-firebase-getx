@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_getx/app/controllers/auth_controller.dart';
-import 'package:flutter_firebase_getx/app/routes/app_pages.dart';
+// import 'package:flutter_firebase_getx/app/routes/app_pages.dart';
 // import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
@@ -22,6 +22,8 @@ class LoginView extends GetView<LoginController> {
         child: ListView(
           children: [
             TextField(
+              cursorColor: Colors.red,
+              autocorrect: false,
               controller: controller.emailC,
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
@@ -32,6 +34,8 @@ class LoginView extends GetView<LoginController> {
             ),
             SizedBox(height: 20),
             TextField(
+              cursorColor: Colors.red,
+              autocorrect: false,
               controller: controller.passC,
               obscureText: true,
               keyboardType: TextInputType.text,
@@ -42,18 +46,6 @@ class LoginView extends GetView<LoginController> {
               ),
             ),
             SizedBox(height: 10),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {
-                  Get.toNamed(Routes.RESET_PASSWORD);
-                },
-                child: Text(
-                  "FORGOT PASSWORD ?",
-                ),
-              ),
-            ),
-            SizedBox(height: 30),
             ElevatedButton.icon(
               onPressed: () {
                 authC.login(
@@ -64,49 +56,7 @@ class LoginView extends GetView<LoginController> {
               icon: Icon(Icons.login),
               label: Text("LOGIN"),
             ),
-            SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Belum Punya Akun ? "),
-                TextButton(
-                  onPressed: () => Get.toNamed(Routes.SIGNUP),
-                  child: Text("Daftar Sekarang"),
-                ),
-              ],
-            ),
-            Divider(color: Colors.black),
-            SizedBox(height: 20),
-            TextField(
-              controller: controller.phoneC,
-              keyboardType: TextInputType.phone,
-              textInputAction: TextInputAction.next,
-              decoration: InputDecoration(
-                labelText: "PHONE NUMBER",
-                prefixIcon: Icon(Icons.phone),
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 10),
-            ElevatedButton.icon(
-              onPressed: () {
-                authC.loginPhone(controller.phoneC.text);
-              },
-              icon: Icon(Icons.login),
-              label: Text("SEND OTP"),
-            ),
-            SizedBox(height: 10),
-            Divider(color: Colors.black),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                authC.loginGoogle();
-              },
-              child: Text("LOGIN WITH GOOGLE"),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.red[900],
-              ),
-            ),
+           
           ],
         ),
       ),
