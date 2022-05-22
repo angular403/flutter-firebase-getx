@@ -26,7 +26,7 @@ class AdminView extends GetView<AdminController> {
           stream: controller.streamAdmin(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.active) {
-              if (snapshot.data!.docs != 0) {
+              if (snapshot.data!.docs.length != 0) {
                 return ListView.builder(
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, index) {

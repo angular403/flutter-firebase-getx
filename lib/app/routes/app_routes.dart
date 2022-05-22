@@ -11,6 +11,8 @@ abstract class Routes {
   static const PROFILE = _Paths.PROFILE;
   static const ADD_ADMIN = _Paths.ADD_ADMIN;
   static const EDIT_ADMIN = _Paths.EDIT_ADMIN;
+  static const ADD_PETUGAS = _Paths.ADD_PETUGAS;
+  static const EDIT_PETUGAS = _Paths.EDIT_PETUGAS;
 }
 
 abstract class _Paths {
@@ -21,4 +23,6 @@ abstract class _Paths {
   static const PROFILE = '/profile';
   static const ADD_ADMIN = '/add-admin';
   static const EDIT_ADMIN = '/edit-admin';
+  static const ADD_PETUGAS = '/add-petugas';
+  static const EDIT_PETUGAS = '/edit-petugas';
 }
