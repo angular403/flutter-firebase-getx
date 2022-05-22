@@ -12,9 +12,12 @@ class AdminController extends GetxController {
   void deleteAdmin(String uid) async {
     await FirebaseFirestore.instance.collection("users").doc(uid).delete();
     Get.defaultDialog(
-      title: "Berhasil",
-      middleText: "Telah Berhasil menghapus data admin",
-      textConfirm: "OKAY",
-    );
+        title: "Berhasil",
+        middleText: "Telah Berhasil menghapus data admin",
+        textConfirm: "OKAY",
+        onConfirm: () {
+          Get.back();
+          Get.back();
+        });
   }
 }

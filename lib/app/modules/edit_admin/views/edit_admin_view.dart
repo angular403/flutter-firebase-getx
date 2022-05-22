@@ -34,6 +34,7 @@ class EditAdminView extends GetView<EditAdminController> {
               ),
               SizedBox(height: 10),
               TextField(
+                readOnly: true,
                 controller: controller.emailC,
                 autocorrect: false,
                 keyboardType: TextInputType.emailAddress,

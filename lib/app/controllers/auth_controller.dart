@@ -3,7 +3,6 @@ import 'package:flutter_firebase_getx/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-
 class AuthController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -127,6 +126,13 @@ class AuthController extends GetxController {
         middleText: "Tidak dapat mendaftarkan akun ini.",
       );
     }
+  }
+
+  void errorMsg(String msg) {
+    Get.defaultDialog(
+      title: "Terjadi Kesalahan",
+      middleText: msg,
+    );
   }
 
   // login
