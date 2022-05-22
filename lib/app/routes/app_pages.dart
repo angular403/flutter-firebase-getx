@@ -1,15 +1,9 @@
 import 'package:get/get.dart';
-
-import 'package:flutter_firebase_getx/app/modules/add_admin/bindings/add_admin_binding.dart';
-import 'package:flutter_firebase_getx/app/modules/add_admin/views/add_admin_view.dart';
 import 'package:flutter_firebase_getx/app/modules/add_petugas/bindings/add_petugas_binding.dart';
 import 'package:flutter_firebase_getx/app/modules/add_petugas/views/add_petugas_view.dart';
 import 'package:flutter_firebase_getx/app/modules/admin/bindings/admin_binding.dart';
 import 'package:flutter_firebase_getx/app/modules/admin/views/admin_view.dart';
-import 'package:flutter_firebase_getx/app/modules/edit_admin/bindings/edit_admin_binding.dart';
-import 'package:flutter_firebase_getx/app/modules/edit_admin/views/edit_admin_view.dart';
-import 'package:flutter_firebase_getx/app/modules/edit_petugas/bindings/edit_petugas_binding.dart';
-import 'package:flutter_firebase_getx/app/modules/edit_petugas/views/edit_petugas_view.dart';
+
 import 'package:flutter_firebase_getx/app/modules/home/bindings/home_binding.dart';
 import 'package:flutter_firebase_getx/app/modules/home/views/home_view.dart';
 import 'package:flutter_firebase_getx/app/modules/login/bindings/login_binding.dart';
@@ -53,24 +47,10 @@ class AppPages {
       binding: ProfileBinding(),
     ),
     GetPage(
-      name: _Paths.ADD_ADMIN,
-      page: () => AddAdminView(),
-      binding: AddAdminBinding(),
-    ),
-    GetPage(
-      name: _Paths.EDIT_ADMIN,
-      page: () => EditAdminView(),
-      binding: EditAdminBinding(),
-    ),
-    GetPage(
       name: _Paths.ADD_PETUGAS,
       page: () => AddPetugasView(),
       binding: AddPetugasBinding(),
     ),
-    GetPage(
-      name: _Paths.EDIT_PETUGAS,
-      page: () => EditPetugasView(),
-      binding: EditPetugasBinding(),
-    ),
+
   ];
 }

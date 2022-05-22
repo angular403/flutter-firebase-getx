@@ -1,93 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_firebase_getx/app/data/models/model_user.dart';
 import 'package:flutter_firebase_getx/app/routes/app_pages.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+
 
 class AuthController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
 
+  var currentUser = ModelUser().obs;
+
   Stream<User?> get streamAuthStatus => auth.authStateChanges();
-
-  // login with google
-
-  void loginGoogle() async {
-    try {
-      GoogleSignIn _googleSignIn = GoogleSignIn();
-      GoogleSignInAccount? myAccount = await _googleSignIn.signIn();
-      if (myAccount != null) {
-        print(myAccount);
-        // Obtain the auth details from the request
-        final GoogleSignInAuthentication? googleAuth =
-            await myAccount.authentication;
-        // Create a new credential
-        final credential = GoogleAuthProvider.credential(
-          accessToken: googleAuth?.accessToken,
-          idToken: googleAuth?.idToken,
-        );
-        // Once signed in, return the UserCredential
-        await FirebaseAuth.instance.signInWithCredential(credential);
-        Get.offAllNamed(Routes.HOME);
-      } else {
-        throw "Belum Memiliki Akun Google";
-      }
-    } catch (error) {
-      print(error);
-      Get.defaultDialog(
-          title: "TERJADI KESALAHAN", middleText: "${error.toString()}");
-    }
-  }
-
-  /////////////////////
-  // void login Phone
-  void loginPhone(String phone) async {
-    await auth.verifyPhoneNumber(
-      phoneNumber: phone,
-      verificationCompleted: (PhoneAuthCredential) {
-        print("verificationCompleted".toUpperCase());
-        print("phoneAuthCredential");
-        print(PhoneAuthCredential);
-        print("============================");
-      },
-      verificationFailed: (error) => Get.defaultDialog(
-        title: "Terjadi Kesalahan",
-        middleText: error.message!,
-      ),
-      codeSent: (verificationId, forceResendingToken) {
-        print("CodeSent".toUpperCase());
-        print("verificationId");
-        print(verificationId);
-        print("----------------------------");
-        print("forceResendingToken");
-        print(forceResendingToken);
-
-        print("============================");
-        // Get.toNamed(Routes.OTP, arguments: verificationId);
-      },
-      codeAutoRetrievalTimeout: (verificationId) {
-        print("codeAutoRetrievalTimeout".toUpperCase());
-        print("verificationId");
-        print(verificationId);
-        print("----------------------------");
-      },
-    );
-  }
-
-  // Code OTP Verification
-
-  void loginOtp(String otp, String verifId) async {
-    try {
-      PhoneAuthCredential myCredential = await PhoneAuthProvider.credential(
-        verificationId: verifId,
-        smsCode: otp,
-      );
-      await auth.signInWithCredential(myCredential);
-      Get.offAllNamed(Routes.HOME);
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-
-  /////////////////////////
 
   // Signup
   void signup(String email, String password) async {
@@ -142,20 +65,15 @@ class AuthController extends GetxController {
         email: email,
         password: password,
       );
-      if (myUser.user!.emailVerified) {
-        Get.offAllNamed(Routes.HOME);
-      } else {
-        Get.defaultDialog(
-            title: "Vertification Email ",
-            middleText:
-                "Kamu Perlu Vertifikasi Email Terlebih Dahulu. Apakah kamu ingin dikirimkan verifikasi ulang ?",
-            onConfirm: () async {
-              await myUser.user!.sendEmailVerification();
-              Get.back();
-            },
-            textConfirm: "Kirim ulang",
-            textCancel: "kembali");
-      }
+
+      final docUser = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(myUser.user!.uid)
+          .get();
+
+      currentUser(ModelUser.fromJson(docUser.data()!));
+      update();
+      Get.offAllNamed(Routes.HOME);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
@@ -182,6 +100,8 @@ class AuthController extends GetxController {
   // logout
   void logout() async {
     await FirebaseAuth.instance.signOut();
+    currentUser(ModelUser());
+    update();
     Get.offAllNamed(Routes.LOGIN);
   }
 

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_getx/app/controllers/auth_controller.dart';
 import 'package:flutter_firebase_getx/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
@@ -7,6 +8,7 @@ import 'package:get/get.dart';
 import '../controllers/petugas_controller.dart';
 
 class PetugasView extends GetView<PetugasController> {
+  final authC = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,6 +16,7 @@ class PetugasView extends GetView<PetugasController> {
           title: Text('Menu petugas'),
           centerTitle: true,
           actions: [
+            if(authC.currentUser.value.role == "admin")
             IconButton(
               onPressed: () {
                 Get.toNamed(Routes.ADD_PETUGAS);
@@ -32,19 +35,16 @@ class PetugasView extends GetView<PetugasController> {
                   itemBuilder: (context, index) {
                     var data = snapshot.data!.docs[index].data();
                     return ListTile(
-                      onTap: () {
-                        Get.toNamed(Routes.EDIT_PETUGAS, arguments: data["uid"]);
-                      },
                       title: Text("${data["name"]}"),
                       subtitle: Text("${data["email"]}"),
-                      trailing: IconButton(
+                      trailing: (authC.currentUser.value.role == "admin") ? IconButton(
                         onPressed: () {
                           controller.deletePetugas(data["uid"]);
                         },
                         icon: Icon(
                           Icons.delete,
                         ),
-                      ),
+                      ) : SizedBox(),
                     );
                   },
                 );

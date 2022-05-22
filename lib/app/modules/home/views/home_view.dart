@@ -26,6 +26,7 @@ class HomeView extends GetView<HomeController> {
       ),
       body: Column(
         children: [
+          if(authC.currentUser.value.role == "admin")
           menuItem(
               title: "DATA ADMIN",
               imageURL: "https://picsum.photos/id/870/1500"),

@@ -13,14 +13,6 @@ class AdminView extends GetView<AdminController> {
         appBar: AppBar(
           title: Text('Menu Admin'),
           centerTitle: true,
-          actions: [
-            IconButton(
-              onPressed: () {
-                Get.toNamed(Routes.ADD_ADMIN);
-              },
-              icon: Icon(Icons.add),
-            ),
-          ],
         ),
         body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
           stream: controller.streamAdmin(),
@@ -32,19 +24,8 @@ class AdminView extends GetView<AdminController> {
                   itemBuilder: (context, index) {
                     var data = snapshot.data!.docs[index].data();
                     return ListTile(
-                      onTap: () {
-                        Get.toNamed(Routes.EDIT_ADMIN, arguments: data["uid"]);
-                      },
                       title: Text("${data["name"]}"),
                       subtitle: Text("${data["email"]}"),
-                      trailing: IconButton(
-                        onPressed: () {
-                          controller.deleteAdmin(data["uid"]);
-                        },
-                        icon: Icon(
-                          Icons.delete,
-                        ),
-                      ),
                     );
                   },
                 );
